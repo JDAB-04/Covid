@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>State Data</title>
+</head>
+<body>
+    <h1>COVID-19 Data for {{ state_data['state'] }}</h1>
+    <p>Confirmed Cases: {{ state_data['positive'] }}</p>
+    <p>Deaths: {{ state_data['death'] }}</p>
+    <p>Hospitalizations: {{ state_data['hospitalizedCurrently'] }}</p>
+    <p>Tests Conducted: {{ state_data['totalTestResults'] }}</p>
+    <a href="/">Go Back</a>
+</body>
+</html>

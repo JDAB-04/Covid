@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Se importan fuentes de google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500&amp;display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+    <!--Se conecta con el css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <!--Titulo de la página-->
+    <title>Covid-19</title>
+  </head>
+<body>
+  <!-- Se crea el header de la página -->
+  <header>
+    <div class="logo">
+      <img src="{{ url_for('static', filename='imagenes/icons8-covidB-100.png') }}"alt="Logo de la pagina"/>
+      <h2 class="Titulo_header">Casos de Covid-19</h2>
+    </div>
+    <!-- Se crea un nav que contiene los link a las otras secciones -->
+    <nav>
+      <a href="#cons" class="nav-link">Consultar</a>
+      <a href="#recom" class="nav-link">Recomendaciones</a>
+    </nav>
+  </header>
+
+  <p>
+    Conoce las últimas noticias sobre el Covid-19 en cada estado de USA
+    mediante nuestra sencilla interfaz <br />
+    la cual te permitirá mantenerte actualizado desde cualquier lugar,
+    cuidando así de tus seres queridos como de ti mismo.
+  </p>
+
+  <!-- Contenedor para el mapa y la lista desplegable-->
+  <div class="Contenedor">
+    <h2 id="cons">Consultar Datos</h2>
+    <!--Formulario con método get de la api para obtener los estados-->
+    <form action="/state" method="get">
+      <label for="state">Seleccionar estado</label>
+      <select name="state" id="state">
+          {% for code, details in states.items() %}
+          <option value="{{ code }}">{{ details['state'] }}</option>
+          {% endfor %}
+      </select>
+      <button type="submit">Ver Datos</button>
+  </form>
+    <!--Se inserta imagen del mapa de estados unidos-->
+    <img src="{{ url_for('static', filename='imagenes/USAmap.png') }}" alt="Mapa Usa">
+  </div>
+
+    <!-- Titulo con recomendaciones sobre el covid -->
+    <h2 id="recom">Recomendaciones</h2>
+  
+  <!-- Contenedor de las cartas de presentación -->
+  <div class="card-container">
+    <div class="card">
+      <div class="head">
+        <div class="circle">
+          <div class="img">
+            <img src="{{ url_for('static', filename='imagenes/icons8-mask-100.png') }}" alt="Tapabocas" />
+          </div>
+        </div>
+      </div>
+
+      <div class="description">
+        <h3>Usa Tapabocas</h3>
+        <p>
+          Recuerda usar tapabocas cada vez que salgas a la calle para evitar contagios.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <div class="circle">
+          <div class="img">
+            <img src="{{ url_for('static' , filename='imagenes/icons8-distance-100.png') }}" alt="Distancia" />
+          </div>
+        </div>
+      </div>
+
+      <div class="description">
+        <h3>Mantén la Distancia</h3>
+        <p>
+          En espacios cerrados, procura mantener una distancia minima de 2m con las demás personas.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="head">
+        <div class="circle">
+          <div class="img">
+            <img src="{{ url_for('static' , filename='imagenes/icons8-washing-hands-100.png')}}" alt="LavadoManos" />
+          </div>
+        </div>
+      </div>
+
+      <div class="description">
+        <h3>Lava tus Manos</h3>
+        <p>
+          Siempre que vuelvas a casa recuerda lavar muy bien tus manos, minimo por 1 minuto.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+
